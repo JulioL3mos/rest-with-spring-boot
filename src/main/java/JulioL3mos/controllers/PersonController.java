@@ -1,9 +1,10 @@
 package JulioL3mos.controllers;
 
-import JulioL3mos.PersonServices;
+import JulioL3mos.services.PersonServices;
 import JulioL3mos.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,7 +17,8 @@ public class PersonController {
     private PersonServices service;
 
     // 1) GET /person -> listar todas as pessoas
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(
+            produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Person> findAll() {
         return service.findAll();
     }
@@ -24,13 +26,12 @@ public class PersonController {
     // 2) GET /person/{id} -> buscar por id
     @GetMapping(
             value = "/{id}",
-            produces = MediaType.APPLICATION_JSON_VALUE
-    )
-    public Person findById(@PathVariable("id") String id) {
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public Person findById(@PathVariable("id") Long id) {
         return service.findById(id);
     }
 
-    // 3) POST /person -> criar (alterado de GET para POST) [passo 1 do plano]
+    // 3) POST /person -> criar (alterado de GET para POST)
     @PostMapping(
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -38,7 +39,7 @@ public class PersonController {
         return service.create(person);
     }
 
-    // 4) PUT /person -> atualizar (alterado de GET para PUT) [passo 2 do plano]
+    // 4) PUT /person -> atualizar (alterado de GET para PUT)
     @PutMapping(
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
@@ -47,9 +48,10 @@ public class PersonController {
         return service.update(person);
     }
 
-    // 5) DELETE /person/{id} -> deletar por id (corrigido para incluir path variable) [passo 3 do plano]
+    // 5) DELETE /person/{id} -> deletar por id
     @DeleteMapping(value = "/{id}")
-    public void delete(@PathVariable("id") String id) {
+    public ResponseEntity<?> delete(@PathVariable("id") Long id) {
         service.delete(id);
+        return ResponseEntity.noContent().build();// Retorna 204 No Content
     }
 }
