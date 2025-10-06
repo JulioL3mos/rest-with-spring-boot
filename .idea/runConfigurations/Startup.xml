@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Startup" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="JulioL3mos.Startup" />
+    <module name="rest-with-spring-boot" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
