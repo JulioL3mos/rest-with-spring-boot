@@ -3,19 +3,20 @@ package JulioL3mos.services;
 import JulioL3mos.exception.ResourceNotFoundException;
 import JulioL3mos.model.Person;
 import JulioL3mos.repository.PersonRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
-import java.util.logging.Logger;
 
 @Service
 public class PersonServices {
 
 
     private final AtomicLong counter = new AtomicLong();
-    private Logger logger = Logger.getLogger(PersonServices.class.getName());
+    private Logger logger = LoggerFactory.getLogger(PersonServices.class.getName());
 
     @Autowired
     PersonRepository repository;
@@ -42,7 +43,7 @@ public class PersonServices {
         Person entity = repository.findById(person.getId())
                 .orElseThrow(()-> new ResourceNotFoundException("No records found for this ID!"));
 
-        entity.setFirsName(person.getFirsName());
+        entity.setFirstName(person.getFirstName());
         entity.setLastName(person.getLastName());
         entity.setAddress(person.getAddress());
         entity.setGender(person.getGender());

@@ -1,33 +1,20 @@
-package JulioL3mos.model;
-
-import jakarta.persistence.*;
+package JulioL3mos.data.dto;
 
 import java.io.Serializable;
 import java.util.Objects;
 
-@Entity
-@Table
-public class Person implements Serializable {
+public class PersonDTO implements Serializable {
 
     private static final long serialVersionUID =1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
-
-    @Column(name = "firs_name", nullable = false, length = 80)
-    private String firsName;
-
-    @Column(name = "last_name", nullable = false, length = 80)
+    private String firstName;
     private String lastName;
-
-    @Column(nullable = false, length = 100)
     private String address;
-
-    @Column(nullable = false, length = 6)
     private String gender;
 
-    public Person() {}
+    public PersonDTO() {}
 
     public Long getId() {
         return id;
@@ -38,11 +25,11 @@ public class Person implements Serializable {
     }
 
     public String getFirstName() {
-        return firsName;
+        return firstName;
     }
 
     public void setFirstName(String firsName) {
-        this.firsName = firsName;
+        this.firstName = firsName;
     }
 
     public String getLastName() {
@@ -71,7 +58,7 @@ public class Person implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof Person person)) return false;
+        if (!(o instanceof PersonDTO person)) return false;
         return Objects.equals(getId(), person.getId()) && Objects.equals(getFirstName(), person.getFirstName()) && Objects.equals(getLastName(), person.getLastName()) && Objects.equals(getAddress(), person.getAddress()) && Objects.equals(getGender(), person.getGender());
     }
 
