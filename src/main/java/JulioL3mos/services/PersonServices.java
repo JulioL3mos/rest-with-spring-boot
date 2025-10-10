@@ -1,6 +1,9 @@
 package JulioL3mos.services;
 
+import JulioL3mos.data.dto.PersonDTO;
 import JulioL3mos.exception.ResourceNotFoundException;
+import static JulioL3mos.mapper.ObjectMapper.parseListObjects;
+import static JulioL3mos.mapper.ObjectMapper.parseObject;
 import JulioL3mos.model.Person;
 import JulioL3mos.repository.PersonRepository;
 import org.slf4j.Logger;
@@ -21,24 +24,25 @@ public class PersonServices {
     @Autowired
     PersonRepository repository;
 
-    public List<Person> findAll() {
+    public List<PersonDTO> findAll() {
         logger.info("Finding all People!");
-        return repository.findAll();
+        return parseListObjects(repository.findAll(), PersonDTO.class);
     }
 
-    public Person findById(Long id){
+    public PersonDTO findById(Long id){
         logger.info("Finding one Person!");
-        return repository.findById(id)
+        var entity = repository.findById(id)
                 .orElseThrow(()-> new ResourceNotFoundException("No records found for this ID!"));
+        return parseObject(entity, PersonDTO.class);
     }
 
-    public Person create(Person person){
+    public PersonDTO create(PersonDTO person){
         logger.info("Create one Person!");
-
-        return repository.save(person);
+        var entity = parseObject(person, Person.class);
+        return parseObject(repository.save(entity), PersonDTO.class);
     }
 
-    public Person update(Person person){
+    public PersonDTO update(PersonDTO person){
         logger.info("Updating one Person!");
         Person entity = repository.findById(person.getId())
                 .orElseThrow(()-> new ResourceNotFoundException("No records found for this ID!"));
@@ -48,7 +52,7 @@ public class PersonServices {
         entity.setAddress(person.getAddress());
         entity.setGender(person.getGender());
 
-        return repository.save(person);
+        return parseObject(repository.save(entity), PersonDTO.class);
     }
 
     public void delete(Long id){

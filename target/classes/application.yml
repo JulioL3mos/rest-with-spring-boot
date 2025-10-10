@@ -15,6 +15,6 @@ spring:
     open-in-view: false
 logging:
   level:
-    root: warn
+    root: debug
 server:
   port: 8081
