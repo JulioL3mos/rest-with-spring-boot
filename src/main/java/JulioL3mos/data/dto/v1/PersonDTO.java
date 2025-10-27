@@ -1,4 +1,4 @@
-package JulioL3mos.data.dto;
+package JulioL3mos.data.dto.v1;
 
 import java.io.Serializable;
 import java.util.Objects;

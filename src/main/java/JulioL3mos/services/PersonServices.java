@@ -1,9 +1,12 @@
 package JulioL3mos.services;
 
-import JulioL3mos.data.dto.PersonDTO;
+import JulioL3mos.data.dto.v1.PersonDTO;
+import JulioL3mos.data.dto.v2.PersonDTOV2;
 import JulioL3mos.exception.ResourceNotFoundException;
 import static JulioL3mos.mapper.ObjectMapper.parseListObjects;
 import static JulioL3mos.mapper.ObjectMapper.parseObject;
+
+import JulioL3mos.mapper.custom.PersonMapper;
 import JulioL3mos.model.Person;
 import JulioL3mos.repository.PersonRepository;
 import org.slf4j.Logger;
@@ -24,6 +27,9 @@ public class PersonServices {
     @Autowired
     PersonRepository repository;
 
+    @Autowired
+    PersonMapper converter;
+
     public List<PersonDTO> findAll() {
         logger.info("Finding all People!");
         return parseListObjects(repository.findAll(), PersonDTO.class);
@@ -40,6 +46,12 @@ public class PersonServices {
         logger.info("Create one Person!");
         var entity = parseObject(person, Person.class);
         return parseObject(repository.save(entity), PersonDTO.class);
+    }
+
+    public PersonDTOV2 createV2(PersonDTOV2 person){
+        logger.info("Create one Person V2!");
+        var entity = converter.convertDTOtoEntity(person);
+        return converter.convertEntityToDTO(repository.save(entity));
     }
 
     public PersonDTO update(PersonDTO person){

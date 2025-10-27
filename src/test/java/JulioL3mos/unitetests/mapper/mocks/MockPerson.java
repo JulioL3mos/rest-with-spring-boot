@@ -1,6 +1,6 @@
 package JulioL3mos.unitetests.mapper.mocks;
 
-import JulioL3mos.data.dto.PersonDTO;
+import JulioL3mos.data.dto.v1.PersonDTO;
 import JulioL3mos.model.Person;
 
 import java.util.ArrayList;

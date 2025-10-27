@@ -1,12 +1,11 @@
 package JulioL3mos;
 import static JulioL3mos.mapper.ObjectMapper.parseObject;
 import static JulioL3mos.mapper.ObjectMapper.parseListObjects;
-import static JulioL3mos.mapper.ObjectMapper.parseObject;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
-import JulioL3mos.data.dto.PersonDTO;
+import JulioL3mos.data.dto.v1.PersonDTO;
 import JulioL3mos.unitetests.mapper.mocks.MockPerson;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
