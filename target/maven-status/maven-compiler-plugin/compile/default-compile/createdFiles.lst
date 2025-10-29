@@ -1,1 +1,13 @@
+JulioL3mos\services\PersonServices.class
 JulioL3mos\Startup.class
+JulioL3mos\controllers\PersonController.class
+JulioL3mos\repository\PersonRepository.class
+JulioL3mos\model\Person.class
+JulioL3mos\data\dto\v2\PersonDTOV2.class
+JulioL3mos\exception\ExceptionResponse.class
+JulioL3mos\mapper\ObjectMapper.class
+JulioL3mos\controllers\TestLogController.class
+JulioL3mos\mapper\custom\PersonMapper.class
+JulioL3mos\exception\ResourceNotFoundException.class
+JulioL3mos\data\dto\v1\PersonDTO.class
+JulioL3mos\exception\handler\CustomEntityResponseHandler.class
